@@ -1,0 +1,51 @@
+
+  <mat-card mat-card-title class="mat-elevation-z9" style="background-color: rgb(63,81,181); width: 80%;margin-left: 10%;margin-top: 1rem;" ><h2 style="text-align:center;color:white;font-family: monospace;" >Modify the article</h2></mat-card>
+
+<form class="article-form" [formGroup]="articleForm" (ngSubmit)="confirm()"  >
+
+    <mat-form-field class="article-field-full-width">
+      <mat-label>Question</mat-label>
+      <input formControlName="question" matInput placeholder="Ex. Quelle la capital de France ?" >
+      <mat-error style="font-size:xx-small;" *ngIf="articleForm.get('question').touched && articleForm.get('question').invalid">
+         Question is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="article-field-full-width">
+        <mat-label>Answer</mat-label>
+        <input formControlName="answer" matInput placeholder="Ex. Paris" >
+        <mat-error style="font-size:xx-small;" *ngIf="articleForm.get('answer').touched && articleForm.get('answer').invalid">
+            Answer is required
+         </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="article-field-full-width">
+        <mat-label>Proposition 1</mat-label>
+        <input formControlName="proposition1" matInput placeholder="Ex. Berlin">
+        <mat-error style="font-size:xx-small;" *ngIf="articleForm.get('proposition1').touched && articleForm.get('proposition1').invalid">
+            Question is required
+         </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="article-field-full-width">
+        <mat-label>Proposition 2</mat-label>
+        <input formControlName="proposition2" matInput placeholder="Ex. Madrid" >
+        <mat-error style="font-size:xx-small;" *ngIf="articleForm.get('proposition2').touched && articleForm.get('proposition2').invalid">
+            Question is required
+         </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="article-field-full-width">
+        <mat-label>Proposition 3</mat-label>
+        <input formControlName="proposition3" matInput placeholder="Ex. Moscow" >
+        <mat-error style="font-size:xx-small;" *ngIf="articleForm.get('proposition3').touched && articleForm.get('proposition3').invalid">
+            Question is required
+         </mat-error>
+    </mat-form-field>
+
+    <div class="confirm-class">
+            <button  type='button' style="margin-right: 10px;" (click)="cancel()" mat-raised-button color="warn">cancel</button>
+            <button  type="submit"  [disabled]="!articleForm.valid" mat-raised-button color="primary">Confirm</button>
+    </div>
+
+</form>

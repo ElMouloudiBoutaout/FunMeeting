@@ -1,0 +1,73 @@
+<div *ngIf="isLoadingData" >
+  <mat-progress-bar
+  class="progressbar-margin"
+  color="primary"
+   mode="query">
+</mat-progress-bar>
+</div>
+
+<div>
+
+  <mat-card mat-card-title class="mat-elevation-z9" style="background-color: rgb(63,81,181); width: 80%;margin-left: 10%;margin-top: 1rem;" ><h2 style="text-align:center;color:white;font-family: monospace;" >Articles Management</h2></mat-card>
+
+    <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 articles-tables">
+
+        <ng-container  matColumnDef="question">
+          <th class="article-column" mat-header-cell  *matHeaderCellDef> 
+              <p class="column-label" >Question</p> 
+           </th>
+          <td mat-cell *matCellDef="let article"> {{article.question}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="answer">
+          <th class="article-column" mat-header-cell *matHeaderCellDef> 
+            <p class="column-label" >Answer</p> 
+            </th>
+          <td mat-cell *matCellDef="let article"> {{article.answer}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="proposition1">
+          <th class="article-column" mat-header-cell *matHeaderCellDef> 
+            <p class="column-label" >Prop 1</p> 
+            </th>
+          <td mat-cell *matCellDef="let article"> {{article.propositions[0].proposition}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="proposition2">
+            <th class="article-column" mat-header-cell *matHeaderCellDef>
+                <p class="column-label" >Prop 2</p> 
+            </th>
+            <td mat-cell *matCellDef="let article"> {{article.propositions[1].proposition}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="proposition3">
+            <th class="article-column" mat-header-cell *matHeaderCellDef>
+                <p class="column-label" >Prop 3</p> 
+            </th>
+            <td mat-cell *matCellDef="let article"> {{article.propositions[2].proposition}} </td>
+          </ng-container>
+
+
+        <ng-container  matColumnDef="operations">
+            <th class="article-column" mat-header-cell *matHeaderCellDef> 
+                <p class="column-label" ></p>     
+            </th>
+            <td style="width: 10%;" mat-cell *matCellDef="let article"> 
+                <button (click)="updateArticle(article)" mat-icon-button style="size: 10px" isRoundButton="true" isIconButton="true" color="primary" aria-label="delete this article">
+                    <mat-icon >update</mat-icon>
+                </button>
+                <button (click)="deleteArticle(article.id);" mat-icon-button style="size: 10px" isRoundButton="true" isIconButton="true" color="primary" aria-label="delete this article">
+                  <mat-icon >delete</mat-icon>
+              </button>
+            </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+     <mat-paginator class="articles-tables" [pageSizeOptions]="[8]" showFirstLastButtons></mat-paginator>
+</div>
+<button (click)="addNewArticle()" style="float: right;margin-right: 10%;margin-top: 5%;" mat-fab color="primary">
+  <mat-icon >add</mat-icon>
+</button>
