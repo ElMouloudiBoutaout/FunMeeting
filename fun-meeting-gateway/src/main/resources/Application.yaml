@@ -1,0 +1,10 @@
+zuul:
+  routes:
+    users:
+      path: /articles/**
+      serviceId: quiz-app
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

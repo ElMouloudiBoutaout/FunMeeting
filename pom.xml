@@ -18,6 +18,8 @@
     <properties>
         <spring.version>5.2.5.RELEASE</spring.version>
         <spring-security-version>2.2.6.RELEASE</spring-security-version>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -26,13 +28,25 @@
             <artifactId>guava</artifactId>
             <version>28.2-jre</version>
         </dependency>
-
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <modules>
         <module>common</module>
         <module>quiz</module>
+        <module>fun-meeting-service-discovery</module>
+        <module>fun-meeting-gateway</module>
     </modules>
 
 

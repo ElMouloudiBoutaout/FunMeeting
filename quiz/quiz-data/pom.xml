@@ -15,7 +15,6 @@
 	<name>quiz-data</name>
 
 	<properties>
-		<java.version>1.8</java.version>
 		<hypersistence-optimizer.version>2.1.0</hypersistence-optimizer.version>
 	</properties>
 
