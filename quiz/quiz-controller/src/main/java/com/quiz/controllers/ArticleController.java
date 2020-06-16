@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/api/v1/articles")
@@ -31,7 +32,7 @@ public class ArticleController {
     public List<ArticleDto> retrieveAllArticles(){
 
        return articleCrudService.findAllArticles()
-              .stream().map(article -> this.convertToArticleDto(article)).collect(Collectors.toList());
+              .stream().map(article -> this.convertToArticleDto(article)).collect(toList());
     }
 
 
@@ -68,8 +69,14 @@ public class ArticleController {
        return new ResponseEntity(articleDto,HttpStatus.OK);
     }
 
+    @PatchMapping
+    public ResponseEntity partialUpdateArticle(@Valid @RequestBody ArticleDto articleDto) {
+        articleCrudService.updateArticle(convertDtoToArticle(articleDto));
+        return new ResponseEntity(articleDto,HttpStatus.OK);
+    }
 
- private  Article convertDtoToArticle(ArticleDto articleDto){
+
+    private  Article convertDtoToArticle(ArticleDto articleDto){
       return modelMapper.map(articleDto,Article.class);
  }
 
@@ -79,4 +86,8 @@ public class ArticleController {
 
 }
 
+   // kubectl taint nodes node1 node-role.kubernetes.io/master=value:NoSchedule
 
+  //  Then you can join any number of worker nodes by running the following on each as root:
+
+      //  kubeadm join 10.10.10.21:6443 --token arasow.mjvzvuxhttmxw2gs --discovery-token-ca-cert-hash sha256:0c63dd9008cd6a501c54fae157a570a2f61a5ef3f47395a3283644d81af04419

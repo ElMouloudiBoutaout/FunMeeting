@@ -1,5 +1,6 @@
 package com.quiz.entities;
 
+import com.quiz.entities.audit.DateAudit;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,7 +21,7 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @DynamicUpdate
 @Entity
-public class Article implements Serializable {
+public class Article  extends DateAudit implements Serializable {
 
     @CreatedDate
     private Instant createdDate;
@@ -39,6 +40,18 @@ public class Article implements Serializable {
     @NotBlank
     @NotNull
     private String question;
+
+    @NotNull
+    @NotBlank
+    private Mode mode;
+
+    @NotNull
+    @NotBlank
+    private Category category;
+
+    @NotNull
+    @NotBlank
+    private int weight;
 
     //@Embedded
     @ElementCollection

@@ -19,11 +19,7 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.fun-meeting</groupId>
-			<artifactId>fun-meeting-security</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.fun-meeting</groupId>
 			<artifactId>quiz-business</artifactId>
@@ -53,7 +49,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
+	    <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>

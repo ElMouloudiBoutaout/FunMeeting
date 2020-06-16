@@ -28,6 +28,16 @@
             <artifactId>guava</artifactId>
             <version>28.2-jre</version>
         </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <optional>true</optional>
+            </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -47,6 +57,7 @@
         <module>quiz</module>
         <module>fun-meeting-service-discovery</module>
         <module>fun-meeting-gateway</module>
+        <module>fun-meeting-security</module>
     </modules>
 
 

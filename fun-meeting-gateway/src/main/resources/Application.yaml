@@ -1,8 +1,9 @@
 zuul:
   routes:
-    users:
-      path: /articles/**
+    quiz-app:
+      path: /quiz/**
       serviceId: quiz-app
+      stripPrefix: true
 
 eureka:
   client:

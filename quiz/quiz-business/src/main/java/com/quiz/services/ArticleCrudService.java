@@ -1,6 +1,7 @@
 package com.quiz.services;
 
 import com.quiz.entities.Article;
+import com.quiz.entities.Preferences;
 import com.quiz.exceptions.ArticleNotFoundException;
 import com.quiz.repositories.ArticleRepository;
 import com.quiz.servicesInterfaces.ArticleCrudServiceInterface;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ArticleCrudService implements ArticleCrudServiceInterface {
@@ -30,7 +34,7 @@ public class ArticleCrudService implements ArticleCrudServiceInterface {
     public Article updateArticle(Article article){
         Objects.requireNonNull(article);
         Optional<Article> articleTmp = articleRepository.findById(article.getId());
-        if(!articleTmp.isPresent()){
+        if(articleTmp.isEmpty()){
             throw new ArticleNotFoundException(msg.concat(article.getId().toString()));
         }else
            return articleRepository.save(article);
@@ -39,31 +43,34 @@ public class ArticleCrudService implements ArticleCrudServiceInterface {
     @NonNull
     public void removeArticle(Article article){
         Objects.requireNonNull(article);
-        Optional<Article> articleTmp = articleRepository.findById(article.getId());
-        if(!articleTmp.isPresent()){
-            throw new ArticleNotFoundException(msg.concat(article.getId().toString()));
-        }else{
-            articleRepository.delete(articleTmp.get());}
+        articleRepository.findById(article.getId()).
+                ifPresentOrElse(articleTmp ->articleRepository.delete(articleTmp),()-> throwArticleNotFoundException(article.getId()));
     }
 
     public void removeArticleById(Long id){
-
         Objects.requireNonNull(id);
         Optional<Article> articleTmp = articleRepository.findById(id);
-        if(!articleTmp.isPresent()){
-            throw new ArticleNotFoundException(msg.concat(id.toString()));
-        }else{
-            articleRepository.delete(articleTmp.get());}
+        articleTmp.ifPresentOrElse(article ->articleRepository.delete(article),()-> throwArticleNotFoundException(id));
     }
 
     public List<Article> findAllArticles(){
            return articleRepository.findAll();
     }
 
+    public List<Article> findAllArticlesByPreferences(Predicate<Article> predicate){
+        return articleRepository.findAll().
+                stream().filter(predicate).collect(Collectors.toList());
+
+    }
+
     @Override
     public Optional<Article> retrieveArticleById(Long id) {
         Objects.requireNonNull(id);
         return articleRepository.findById(id);
+    }
+
+    private void throwArticleNotFoundException(Long id) {
+        throw new ArticleNotFoundException(msg.concat(String.valueOf(id)));
     }
 
 }
