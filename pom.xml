@@ -18,7 +18,7 @@
     <properties>
         <spring.version>5.2.5.RELEASE</spring.version>
         <spring-security-version>2.2.6.RELEASE</spring-security-version>
-        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
         <java.version>11</java.version>
     </properties>
 

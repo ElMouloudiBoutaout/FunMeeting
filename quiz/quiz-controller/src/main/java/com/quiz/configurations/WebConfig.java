@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${frontApi.name}")
     private String pathPattern;
 
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
