@@ -9,8 +9,8 @@ import { Injectable } from '@angular/core';
 export class ArticleCrudApi implements IArticleCrudApi {
 
 
-    private _articleApitUrl = 'http://localhost:8080/api/v1/articles';
-    private _httpHeaders : HttpHeaders = new HttpHeaders({"content-type":"application/json","Authorization": 'Basic ' + btoa('user:password')});
+    private _articleApitUrl = 'http://localhost:8080/quiz-app/api/v1/articles';
+    private _httpHeaders : HttpHeaders = new HttpHeaders({"content-type":"application/json","Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzZWN1cmUtYXBpIiwiYXVkIjoic2VjdXJlLWFwcCIsInN1YiI6InVzZXIiLCJleHAiOjE1OTMyMTAyMjd9.PemNsn9PxcH0mxcY8Ag_wy64Vjkg93dRi-WMgUzjichyGlttGyESnfdFFrwzs849BkCxGBGkCY7Ng2Lh8YLz6w'});
 
 
 

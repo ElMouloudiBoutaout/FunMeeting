@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.boot.autoconfigure.domain.EntityScan;
-//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.ComponentScan;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 //@ComponentScan("com.quiz")
@@ -44,6 +43,12 @@ public class QuizControllerApplication implements CommandLineRunner{
 				.build();
 
 		articleCrudService.createArticle(article);
+
+		Map<Integer, Object> mapA = Map.of(1,"a",2,"b",3,"c");
+
+		Map<Integer, Object> mapB = Map.of(5,"a",6,"d",7,"c");
+
+		mapA.keySet().stream().collect(Collectors.toMap((x->mapA.get(x)),x->x)).keySet().forEach(System.out::println);
 
 	}
 }

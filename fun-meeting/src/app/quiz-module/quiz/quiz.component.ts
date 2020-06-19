@@ -9,6 +9,10 @@ export class QuizComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    console.log("Quiz component")
+
+  }
 
 }

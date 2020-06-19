@@ -16,7 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 const routes : Routes = [
   {
-    path: "", 
+    path: "articles", 
     component: ArticleComponent 
   }
 ]
@@ -34,7 +34,7 @@ const routes : Routes = [
     MatDialogModule,
     MatCardModule,
     MatPaginatorModule,
-    RouterModule.forChild(routes)
+    //RouterModule.forChild(routes)
   ]
 })
 export class ArticleModule { }

@@ -22,6 +22,11 @@ public class Main {
 
         System.out.println(twoSum(new int[]{2,7,11,15,19},9));
 
+        Map mapA = Map.of(1,"a",2,"b",3,"c");
+
+        Map mapB = Map.of(5,"a",6,"d",7,"c");
+
+
     }
 
 
