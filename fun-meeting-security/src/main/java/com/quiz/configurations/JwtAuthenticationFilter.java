@@ -11,7 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +35,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
-        log.info(">>>>>>>>>>>>><><<<<<<<<<<");
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -63,7 +61,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setIssuer(SecurityConstants.TOKEN_ISSUER)
                 .setAudience(SecurityConstants.TOKEN_AUDIENCE)
                 .setSubject(user.getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + 864000000))
+                .setExpiration(new Date(System.currentTimeMillis() + 864000))
                 //.claim("rol", roles)
                 .compact();
 

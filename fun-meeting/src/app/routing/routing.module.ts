@@ -8,14 +8,15 @@ export const appRouteList: Routes = [
   {
     path: 'quiz',
     loadChildren: () => import('../quiz-module/quiz.routing.module').then(m => m.QuizRoutingModule),
+    canActivate : [AuthGuard]
   },
   {
-    path: 'login',
+    path: '',
     loadChildren: () => import('../authentication-module/authentication.module').then(m => m.AuthenticationModule),
   },
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'login',
     pathMatch: 'full'
   }
 ];
